@@ -10,12 +10,9 @@
 import Foundation
 
 func bubbleSort(_ nums: inout [Int]) {
-    let n = nums.count
-    for i in 0..<n {
-        for j in 0..<(n - 1 - i) {
-            if nums[j] > nums[j + 1] {
-                nums.swapAt(j, j + 1)
-            }
+    for counter in 0..<nums.count {
+        for counter2 in 0..<(nums.count - 1 - counter) where nums[counter2] > nums[counter2 + 1] {
+            nums.swapAt(counter2, counter2 + 1)
         }
     }
 }
@@ -27,13 +24,13 @@ let outputFilePath = "output.txt"
 // Read input from file
 if let inputFile = try? String(contentsOfFile: inputFilePath) {
     let lines = inputFile.components(separatedBy: "\n")
-    
+
     // Process each line
     var answers = [String]()
     for line in lines {
         let numbers = line.split(separator: " ").compactMap { Int($0) }
         var nums = Array(numbers)
-        
+
         // Sort the numbers using bubble sort
         bubbleSort(&nums)
         // Write the sorted array to the output file
